@@ -17,10 +17,27 @@ def findBeginSequenceOnDNA(dnaSequence):
     return findInString('ATG', dnaSequence)
 
 def findEndSequenceOnRNA(rnaSequence):
-    return findInString('UAA', rnaSequence) + findInString('UAG', rnaSequence) + findInString('UGA', rnaSequence)
+    return sorted(findInString('UAA', rnaSequence) + findInString('UAG', rnaSequence) + findInString('UGA', rnaSequence))
 
 def findEndSequenceOnDNA(dnaSequence):
-    return findInString('TAA', dnaSequence) + findInString('TAG', dnaSequence) + findInString('TGA', dnaSequence)
+    return sorted(findInString('TAA', dnaSequence) + findInString('TAG', dnaSequence) + findInString('TGA', dnaSequence))
+
+#protein detector
+
+def filterListByGreatherThanValue(value, sequence):
+    return list(filter((value).__le__, sequence))
+
+
+def findProteinsequences(beqinPositions, endPositions):
+    sequence_list = []
+    reducedEndPositions = endPositions
+    for begin in beqinPositions:
+        reducedEndPositions = filterListByGreatherThanValue(begin,reducedEndPositions)
+        for end in reducedEndPositions:
+            if ((begin-end)%3==0):
+                sequence_list.append([begin,end])
+                break
+    return sequence_list
 
 # DNA controller
 def idSequenceDNA(seq):
@@ -75,11 +92,13 @@ if __name__ == "__main__":
     print(isDNAComplete(dnaString))
     print(idSequenceDNA(dnaString))
     rna = createRNAbyDNA(dnaString)
-    print(findBeginSequenceOnRNA(rna))
-    print(findEndSequenceOnRNA(rna))
+    begin = findBeginSequenceOnRNA(rna)
+    end = findEndSequenceOnRNA(rna)
     print(translateARNtoProtein(rna[20:935]))
 
-    print(findInString("st", "st st    stst"))
+    #print(filterListByGreatherThanValue(5,[14,7,6,5,3,2]))
+    sequence_List = findProteinsequences(begin, end)
+    print(translateARNtoProtein(rna[sequence_List[0][0]:(sequence_List[0][1]+3)]))
 
 
     
