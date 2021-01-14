@@ -19,6 +19,14 @@ def writeToFile(string ,path):
     else:
         print("Directory do not exists")
         return False
+
+def getSubSectionOfSequence(seq,interval):
+    try:
+        return seq[interval[0]:interval[1]]
+    except Exception as exc:
+        print(f'ERROR: {exc}')
+        return None
+
 # controllers
 
 def genericSequenceController(seq, valuesToMatch):
@@ -57,6 +65,9 @@ class DNA():
     def getSequence(self):
         return self.value
 
+    def getSubSection(self,interval):
+        return DNA(getSubSectionOfSequence(self.value, interval))
+
     def createRNA(self):
         return RNA(self.value.replace("T","U"))
 
@@ -84,6 +95,9 @@ class RNA():
 
     def getSequence(self):
         return self.value
+
+    def getSubSection(self,interval):
+        return RNA(getSubSectionOfSequence(self.value, interval))
 
     def createDNA(self):
         return DNA(self.value.replace("U","T"))
@@ -130,6 +144,9 @@ class Protein():
 
     def getSequence(self):
         return self.value
+
+    def getSubSection(self,interval):
+        return Protein(getSubSectionOfSequence(self.value, interval))
 
     def isSequenceProtein(self,seq):
         return genericSequenceController(seq, ["I","M","T","N","K","S","R","L","P","H","Q","V","A","D","E","G","F","Y","C","W"])

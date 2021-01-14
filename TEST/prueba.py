@@ -1,3 +1,12 @@
+import sys
+sys.path.append('.')
+
+from DNA_RNA_Protein_Module import DNA, RNA, Protein
+
+
+
+
+
 """
 #FIND Functions
 def findBeginSequenceOnRNA(rnaSequence):
