@@ -1,11 +1,41 @@
 import sys
 sys.path.append('.')
 
-from DNA_RNA_Protein_Module import DNA, RNA, Protein
+from DNA_RNA_Protein_Module import DNA, RNA, Protein,loadFile
 
+def test_1():
+    dnaString = loadFile("DATA\\DNA\\DNA_seq_altered.txt")
+    dna = DNA(dnaString)
+    rna = dna.createRNA()
+    dna1 = rna.createDNA()
+    if (dna.getSequence() == dna1.getSequence()):
+        return True
+    return False
 
+def test_2():
+    dnaString_1 = loadFile("DATA\\DNA\\DNA_seq_altered.txt")
+    dna = DNA(dnaString_1)
+    dna.writeToFile("DATA\\DNA\\DNA_test_2.txt")
+    dnaString_2 = loadFile("DATA\\DNA\\DNA_test_2.txt")
+    if (dnaString_1 == dnaString_2):
+        return True
+    return False
 
+def testProcess():
+    """
+    """
+    try:
+        if (test_1()):
+            if (test_2()):
+                return True
+        return False
+    except Exception as exc:
+        print(f'ERROR: {exc}')
+        return False
 
+if __name__ == "__main__":
+
+   print(testProcess())
 
 """
 #FIND Functions
