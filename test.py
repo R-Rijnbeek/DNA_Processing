@@ -54,6 +54,9 @@ class DNA():
     def isSequenceDNA(self, seq):
         return genericSequenceController(seq, ["A","T","C","G"])
 
+    def getSequence(self):
+        return self.value
+
     def createRNA(self):
         return RNA(self.value.replace("T","U"))
 
@@ -77,7 +80,10 @@ class RNA():
             self.value = seq
 
     def isSequenceRNA(self, seq):
-        return genericSequenceController(seq, ["A","U","C","G"]) 
+        return genericSequenceController(seq, ["A","U","C","G"])
+
+    def getSequence(self):
+        return self.value
 
     def createDNA(self):
         return DNA(self.value.replace("U","T"))
@@ -121,6 +127,9 @@ class Protein():
         self.value = None
         if (self.isSequenceProtein(seq)):
             self.value = seq
+
+    def getSequence(self):
+        return self.value
 
     def isSequenceProtein(self,seq):
         return genericSequenceController(seq, ["I","M","T","N","K","S","R","L","P","H","Q","V","A","D","E","G","F","Y","C","W"])
