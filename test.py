@@ -39,13 +39,23 @@ def findProteinsequences(beqinPositions, endPositions):
                 break
     return sequence_list
 
-# DNA controller
-def idSequenceDNA(seq):
+# controllers
+
+def genericSequenceController(seq, valuesToMatch):
     removeDuplicates =  "".join(set(seq))
     for char in removeDuplicates:
-        if char not in ["A","T","C","G"]:
+        if char not in valuesToMatch:
             return False
     return True
+
+def isSequenceDNA(seq):
+    return genericSequenceController(seq, ["A","T","C","G"])
+
+def isSequenceRNA(seq):
+    return genericSequenceController(seq, ["A","U","C","G"])
+
+def isSequenceProtein(seq):
+    return genericSequenceController(seq, ["I","M","T","N","K","S","R","L","P","H","Q","V","A","D","E","G","F","Y","C","W"])
 
 def createRNAbyDNA(dnaSequence):
     return dnaSequence.replace("T","U")
@@ -90,7 +100,7 @@ if __name__ == "__main__":
 
     print(dnaString)
     print(isDNAComplete(dnaString))
-    print(idSequenceDNA(dnaString))
+    print(isSequenceDNA(dnaString))
     rna = createRNAbyDNA(dnaString)
     begin = findBeginSequenceOnRNA(rna)
     end = findEndSequenceOnRNA(rna)
