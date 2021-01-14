@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 
 def findInString(val, seq):
     return [m.start() for m in re.finditer(f'(?={val})', seq)]
@@ -9,6 +10,15 @@ def loadFile(path):
 def isSequenceMultipleOfThree(seq):
     return len(seq)%3 == 0
 
+def writeToFile(string ,path):
+    if Path(path).parent.is_dir():
+        f = open(path, "w")
+        f.write(string)
+        f.close()
+        return True
+    else:
+        print("Directory do not exists")
+        return False
 # controllers
 
 def genericSequenceController(seq, valuesToMatch):
@@ -55,6 +65,10 @@ class DNA():
 
     def isSequenceMultipleOfThree(self):
         return isSequenceMultipleOfThree(self.value)
+    
+    def writeToFile(self,path):
+        return writeToFile(self.value,path)
+
 
 class RNA():
     def __init__(self, seq):
@@ -97,6 +111,9 @@ class RNA():
 
     def isSequenceMultipleOfThree(self):
         return isSequenceMultipleOfThree(self.value)
+    
+    def writeToFile(self,path):
+        return writeToFile(self.value,path)
 
 
 class Protein():
@@ -107,6 +124,9 @@ class Protein():
 
     def isSequenceProtein(self,seq):
         return genericSequenceController(seq, ["I","M","T","N","K","S","R","L","P","H","Q","V","A","D","E","G","F","Y","C","W"])
+
+    def writeToFile(self,path):
+        return writeToFile(self.value,path)
 
 
 
