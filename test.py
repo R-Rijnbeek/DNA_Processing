@@ -1,12 +1,28 @@
+import re
+
+def findInString(val, seq):
+    return [m.start() for m in re.finditer(f'(?={val})', seq)]
+
 def loadDNAFile(path):
     return open( path, "r").read().replace("\n", "").replace("\r", "")
 
 def isDNAComplete(dnaSequence):
     return len(dnaSequence)%3 == 0
 
-def findAUG(dnaSequence):
-    return dnaSequence.find("AUG")
+#FIND Functions
+def findBeginSequenceOnRNA(rnaSequence):
+    return findInString('AUG', rnaSequence)
 
+def findBeginSequenceOnDNA(dnaSequence):
+    return findInString('ATG', dnaSequence)
+
+def findEndSequenceOnRNA(rnaSequence):
+    return findInString('UAA', rnaSequence) + findInString('UAG', rnaSequence) + findInString('UGA', rnaSequence)
+
+def findEndSequenceOnDNA(dnaSequence):
+    return findInString('TAA', dnaSequence) + findInString('TAG', dnaSequence) + findInString('TGA', dnaSequence)
+
+# DNA controller
 def idSequenceDNA(seq):
     removeDuplicates =  "".join(set(seq))
     for char in removeDuplicates:
@@ -59,8 +75,11 @@ if __name__ == "__main__":
     print(isDNAComplete(dnaString))
     print(idSequenceDNA(dnaString))
     rna = createRNAbyDNA(dnaString)
-    print(findAUG(rna))
+    print(findBeginSequenceOnRNA(rna))
+    print(findEndSequenceOnRNA(rna))
     print(translateARNtoProtein(rna[20:935]))
+
+    print(findInString("st", "st st    stst"))
 
 
     
