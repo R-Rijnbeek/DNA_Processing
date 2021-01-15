@@ -21,13 +21,24 @@ def test_2():
         return True
     return False
 
+def test_3():
+    dnaString = loadFile("DATA\\DNA\\DNA_seq_altered.txt")
+    dna = DNA(dnaString)
+    rna = dna.createRNA()
+    rna.writeToFile("DATA\\RNA\\RNA_test_3.txt")
+    rnaString = loadFile("DATA\\RNA\\RNA_test_3.txt")
+    if ( (rna.getSequence() == rnaString) and (dna.getSequence() == dnaString) ) :
+        return True
+    return False
+
 def testProcess():
     """
     """
     try:
         if (test_1()):
             if (test_2()):
-                return True
+                if (test_3()):
+                    return True
         return False
     except Exception as exc:
         print(f'ERROR: {exc}')
