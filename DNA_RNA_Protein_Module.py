@@ -155,7 +155,6 @@ class Protein():
         return writeToFile(self.value,path)
 
 
-
 if __name__ == "__main__":
 
     dnaString = loadFile("DATA\\DNA\\DNA_seq_altered.txt")
@@ -169,19 +168,7 @@ if __name__ == "__main__":
     protein = rna.createProtein()
 
     print(protein)
-    """
-    print(dnaString)
-    print(isDNAComplete(dnaString))
-    print(isSequenceDNA(dnaString))
-    rna = createRNAbyDNA(dnaString)
-    begin = findBeginSequenceOnRNA(rna)
-    end = findEndSequenceOnRNA(rna)
-    print(translateARNtoProtein(rna[20:935]))
 
-    #print(filterListByGreatherThanValue(5,[14,7,6,5,3,2]))
-    sequence_List = findProteinsequences(begin, end)
-    print(translateARNtoProtein(rna[sequence_List[0][0]:(sequence_List[0][1]+3)]))
-    """
 
 
     
