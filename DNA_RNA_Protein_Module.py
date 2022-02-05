@@ -156,7 +156,7 @@ class Protein():
 
 
 if __name__ == "__main__":
-
+    
     dnaString = loadFile("DATA\\DNA\\DNA_seq_altered.txt")
 
     dna = DNA(dnaString)
@@ -168,9 +168,3 @@ if __name__ == "__main__":
     protein = rna.createProtein()
 
     print(protein)
-
-
-
-    
-
-
