@@ -1,5 +1,17 @@
+# -*- coding: utf-8 -*-
+"""
+dna_processing: Module to work with DNA, RNA and Protein sequences. And interact with them
+"""
+__author__  = "Robert Rijnbeek"
+__email__   = "robert270384@gmail.com"
+__version__ = "0.0.1"
+
+# ======== IMPORTS ===========
+
 import re
 from pathlib import Path
+
+# ======= BASE FUNCTIONS =====
 
 def findInString(val, seq):
     return [m.start() for m in re.finditer(f'(?={val})', seq)]
@@ -52,6 +64,8 @@ def findProteinsequences(beqinPositions, endPositions):
                 sequence_list.append([begin,end])
                 break
     return sequence_list
+
+# ======== DNA, RNA, Protein  Classes =========
 
 class DNA():
     def __init__(self, seq):
@@ -157,14 +171,4 @@ class Protein():
 
 if __name__ == "__main__":
     
-    dnaString = loadFile("DATA\\DNA\\DNA_seq_altered.txt")
-
-    dna = DNA(dnaString)
-    rna = dna.createRNA()
-    dna1 = rna.createDNA()
-
-    print(dna.value==dna1.value)
-
-    protein = rna.createProtein()
-
-    print(protein)
+    pass
