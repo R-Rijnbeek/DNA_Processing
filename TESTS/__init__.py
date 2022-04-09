@@ -65,8 +65,6 @@ def test_4():
     return False
 
 def testProcess():
-    """
-    """
     try:
         if (test_1()):
             if (test_2()):
@@ -84,3 +82,4 @@ def testProcess():
 if __name__ == "__main__":
     
     testProcess()
+    

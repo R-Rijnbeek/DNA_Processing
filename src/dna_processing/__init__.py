@@ -4,7 +4,7 @@ dna_processing: Module to work with DNA, RNA and Protein sequences. And interact
 """
 __author__  = "Robert Rijnbeek"
 __email__   = "robert270384@gmail.com"
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 # ======== IMPORTS ===========
 
