@@ -1,7 +1,7 @@
 import sys
 sys.path.append('.')
 
-from DNA_RNA_Protein_Module import DNA, RNA, Protein, loadFile, findProteinsequences
+from src.dna_processing import DNA, RNA, Protein, loadFile, findProteinsequences
 
 def test_1():
     dnaString = loadFile("DATA\\DNA\\DNA_seq_altered.txt")
