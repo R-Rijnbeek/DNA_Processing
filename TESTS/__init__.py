@@ -1,7 +1,13 @@
-import sys
-sys.path.append('.')
+# -*- coding: utf-8 -*-
+"""
+test module for dna_processing: Test dodule to test the DNA_ProcessPackage
+"""
 
-from src.dna_processing import DNA, RNA, Protein, loadFile, findProteinsequences
+# ======== IMPORTS ===========
+
+from dna_processing import DNA, RNA, Protein, loadFile, findProteinsequences
+
+# ======== TEST FUNCTIONS =======
 
 def test_1():
     dnaString = loadFile("DATA\\DNA\\DNA_seq_altered.txt")
@@ -71,8 +77,8 @@ def testProcess():
         print(f'ERROR: {exc}')
         return False
 
-if __name__ == "__main__":
+# ======== EXECUTE TESTS ==========
 
-    """Test"""
+if __name__ == "__main__":
     
     testProcess()
